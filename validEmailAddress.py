@@ -1,6 +1,6 @@
 """
 File: validEmailAddress.py
-Name: 
+Name: 廖悠行
 ----------------------------
 This file shows what a feature vector is
 and what a weight vector is for valid email 
@@ -28,18 +28,23 @@ DATA_FILE = 'is_valid_email.txt'     # This is the file name to be processed
 
 
 def main():
+	count = 0
 	maybe_email_list = read_in_data()
 	for maybe_email in maybe_email_list:
 		feature_vector = feature_extractor(maybe_email)
 		# TODO:
-
+		score = 0
+		for i in range(len(WEIGHT)):
+			score += WEIGHT[i][0] * feature_vector[i] 
+			print("Score of Email Address #{} = {%.16f}".format(i+1,score ))
 
 def feature_extractor(maybe_email):
 	"""
 	:param maybe_email: str, the string to be processed
 	:return: list, feature vector with 10 values of 0's or 1's
 	"""
-	feature_vector = [0] * len(WEIGHT)
+	feature_vector = [1] * len(WEIGHT)
+	"""
 	for i in range(len(feature_vector)):
 		if i == 0:
 			feature_vector[i] = 1 if '@' in maybe_email else 0
@@ -51,6 +56,7 @@ def feature_extractor(maybe_email):
 		#              TODO:              #
 		#                                 #
 		###################################
+	"""
 	return feature_vector
 
 
@@ -58,8 +64,8 @@ def read_in_data():
 	"""
 	:return: list, containing strings that might be valid email addresses
 	"""
-	# TODO:
-	pass
+	f = open(DATA_FILE, "r")
+	return f.readlines()
 
 
 if __name__ == '__main__':
