@@ -36,7 +36,8 @@ def main():
 		score = 0
 		for i in range(len(WEIGHT)):
 			score += WEIGHT[i][0] * feature_vector[i] 
-			print("Score of Email Address #{} = {%.16f}".format(i+1,score ))
+			valid_val = "Valid" if score > 0 else "Invalid"
+			print("#{} {} , Score: {}".format(i+1,valid_val,score) )
 
 def feature_extractor(maybe_email):
 	"""
